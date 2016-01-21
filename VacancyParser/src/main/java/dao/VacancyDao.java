@@ -67,9 +67,9 @@ public class VacancyDao {
         Vacancy vacancy = new Vacancy(link, title, city, description, dateOfPublication, typeOfEmployment, companyName, experienceOfWork, show, keyWord);
         try (Connection con = DriverManager.getConnection(CONNECTION_URL, CONNECTION_USER, CONNECTION_PASSWORD)) {
 
-            String sql = "INSERT INTO vacancy_db (link, title, city, description, dateOfPublication, typeOfEmployment, companyName, experienceOfWork, show, keyWord) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(sql);
+            String sql = "INSERT INTO `vacations`.`vacancies` (`link`,`title`,`city`,`description`,`dateOfPublication`,`typeOfEmployment`,`companyName`,`experienceOfWork`,`show`,`keyWord`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, vacancy.getLink());
             ps.setString(2, vacancy.getTitle());
             ps.setString(3, vacancy.getCity());
@@ -83,7 +83,8 @@ public class VacancyDao {
             ps.execute();
             System.out.printf("added new vacancy to db, %s \n", title);
 
-
+        }catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+            System.out.printf("Already have this vacancy: %s \n", title);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

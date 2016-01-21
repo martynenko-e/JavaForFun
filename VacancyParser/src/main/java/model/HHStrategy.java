@@ -27,9 +27,13 @@ public class HHStrategy implements Strategy
             new HtmlToFile().writeHtmlToLocalFile(doc);
             Elements elements = doc.select("li[data-qa=search-vacancy-item]");
             for (Element element: elements) {
-                String link = element.select("").attr("");
+                String link = element.select("a").first().attr("href");
                 String title = element.select("div[data-qa=vacancy-name]").first().text();
-                System.out.println(title);
+                String city = element.select("div[class=vacancy-list-item__city]").first().text();
+                String dateOfPublication = element.select("span[data-qa=vacancy-pubdate]").first().text();
+                String company = element.select("div[class=vacancy-list-item__company]").first().text();
+                Vacancy vacancy = new Vacancy(link, title, city, "", dateOfPublication, "", company, "", true, "");
+                vacancies.add(vacancy);
             }
 		} catch (IOException e) {
 			e.printStackTrace();

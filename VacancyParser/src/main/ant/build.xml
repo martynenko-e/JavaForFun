@@ -1,24 +1,13 @@
-<project name="WebGit" basedir="../../../" default="Catalina_undeploy">
+<project name="VacancyParse" basedir="." default="Tomcat:start">
 
     <property name="app.name" value="VacancyParser-0.1"/>
     <property name="project" value="VacancyParser"/>
     <property name="desktop.path" value="C:\_project\git\java\JavaForFun\VacancyParser\target"/>
     <property name="war.path" value="C:\_project\git\java\JavaForFun\VacancyParser\target"/>
-    <property name="tomcat.path" location="C:\_files\apache-tomcat-7.0.67"/>
+    <property name="tomcat.path" location="C:\_files\apache-tomcat-7.0.47"/>
     <property name="app.path" location="C:\_project\git\java\JavaForFun"/>
+    <property name="mvn.cmd" location="C:\_files\apache-maven-3.3.9\bin\mvn.cmd"/>
 
-    <property name="application.author" value="Martynenko"/>
-    <property name="application.version" value="0.1"/>
-    <property name="web.content" location="${basedir}/WebContent"/>
-    <property name="web.inf" location="${web.content}/WEB-INF"/>
-    <property name="meta.inf" location="${web.content}/META-INF"/>
-    <property name="path.library" location="${web.inf}/lib"/>
-    <property name="path.java.src" location="${basedir}/src"/>
-    <property name="path.java.dataBase" location="${web.content}/DataBase"/>
-    <property name="path.java.HTML" location="${web.content}/html"/>
-    <property name="path.java.JSP" location="${web.content}/jsp"/>
-    <property name="path.java.build" location="${basedir}/build/classes"/>
-    <property name="servlet.comfig" location="${web.inf}"/>
 
 
     <!--
@@ -26,127 +15,43 @@
     ==================================TOMCAT==================================
     ==========================================================================
     -->
-    <target name="tomcat-start" description="Start Tomcat">
+    <target name="Tomcat:start" description="Start Tomcat">
         <exec dir="${tomcat.path}" executable="${tomcat.path}/bin/startup.bat" spawn="true"/>
     </target>
 
-    <target name="tomcat-shutdown" description="Close Tomcat">
+    <target name="Tomcat:shutdown" description="Close Tomcat">
         <exec dir="${tomcat.path}" executable="${tomcat.path}/bin/shutdown.bat" spawn="true"/>
     </target>
 
-    <target name="tomcat-reload" description="Reload Tomcat" depends="tomcat-shutdown,tomcat-start"/>
+    <target name="Tomcat:reload" description="Reload Tomcat" depends="Tomcat:shutdown,Tomcat:start"/>
 
-    <!--
+   <!--
     ==========================================================================
-    ===============================BUILD_PROJECT==============================
-    ==========================================================================
-    -->
-
-    <target name="clean" description="Clean build directory task">
-        <delete dir="${path.java.build}"/>
-        <mkdir dir="${path.java.build}"/>
-    </target>
-
-
-    <target name="compile" depends="clean">
-        <javac srcdir="${path.java.src}"
-               destdir="${path.java.build}"
-               target="1.8"
-               source="1.8"
-               debug="yes"
-               includeantruntime="yes"
-               classpathref="project-classpath">
-        </javac>
-    </target>
-
-    <target name="sort-files-todir" description="Sort file by current dirs">
-        <move todir="${path.java.HTML}" overwrite="yes">
-            <fileset dir="${basedir}">
-                <include name="**/*.html"/>
-            </fileset>
-        </move>
-        <move todir="${path.java.JSP}" overwrite="yes">
-            <fileset dir="${basedir}">
-                <include name="**/*.jsp"/>
-            </fileset>
-        </move>
-        <move todir="${path.java.dataBase}" overwrite="yes">
-            <fileset dir="${basedir}">
-                <include name="**/*.db"/>
-            </fileset>
-        </move>
-    </target>
-
-    <!--
-    ==========================================================================
-    ==================================WAR=====================================
+    ==============================MAVEN COMMANDS====================================
     ==========================================================================
     -->
 
-    <target name="create-war" description="Create WAR task" depends="compile">
-        <war destfile="${desktop.path}/${app.name}.war" webxml="${web.inf}/web.xml">
-            <zipfileset dir="${path.java.HTML}"/>
-            <zipfileset dir="${path.java.JSP}"/>
-            <fileset dir="${path.java.dataBase}">
-                <include name="*.xml"/>
-            </fileset>
-
-            <classes dir="${path.java.build}"/>
-            <lib dir="${path.library}" excludes="servlet-api.jar"/>
-            <manifest>
-                <attribute name="Create-By" value="${application.author}"/>
-                <attribute name="Version" value="${application.version}"/>
-            </manifest>
-        </war>
-    </target>
-
-    <!--
-    ==========================================================================
-    ==============================CATALINA====================================
-    ==========================================================================
-    -->
-
-    <path id="project-classpath">
-        <fileset dir="${tomcat.path}/lib" includes="*.jar"/>
-    </path>
-    <path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.4-SNAPSHOT.jar"/>
-
-    <taskdef name="deploy" classpathref="project-classpath" classname="org.apache.catalina.ant.DeployTask"/>
-    <taskdef name="undeploy" classpathref="project-classpath" classname="org.apache.catalina.ant.UndeployTask"/>
-    <target name="mvn package">
-        <exec executable="cmd">
-            <arg value="cd.." />
-        </exec>
-    </target>
-    <target name="Catalina_deploy" description="deploy Web Application Archive" depends="createWarFromMvn">
-        <deploy
-                url="http://localhost:8080/manager/text"
-                username="cleric"
-                password="123456"
-                war="${war.path}/${app.name}.war"
-                path="/${app.name}"
-        />
-    </target>
-
-    <target name="Catalina_undeploy" description="undeploy Web Application Archive">
-        <undeploy
-                url="http://localhost:8080/manager/text"
-                username="cleric"
-                password="123456"
-                path="/${app.name}"
-        />
-    </target>
-
-    <target name="Catalina_redeploy" description="redeploy Web Application Archive"
-            depends="Catalina_undeploy, Catalina_deploy">
-        <echo>Redeploy Success</echo>
-    </target>
-
-    <target name="createWarFromMvn" description="Builds the individual project">
+    <target name="Maven - tomcat:Redeploy" description="Builds the individual project">
         <exec dir="${app.path}\${project}" executable="cmd">
             <arg value="/C"/>
-            <arg value="C:\_files\apache-maven-3.3.9\bin\mvn.cmd"/>
-            <arg line="compile war:war" />
+            <arg value="${mvn.cmd}"/>
+            <arg line="tomcat7:redeploy" />
+        </exec>
+    </target>
+
+    <target name="Maven - tomcat:Deploy" description="Builds the individual project">
+        <exec dir="${app.path}\${project}" executable="cmd">
+            <arg value="/C"/>
+            <arg value="${mvn.cmd}"/>
+            <arg line="tomcat7:deploy" />
+        </exec>
+    </target>
+
+    <target name="Maven - tomcat:Undeploy" description="Builds the individual project">
+        <exec dir="${app.path}\${project}" executable="cmd">
+            <arg value="/C"/>
+            <arg value="${mvn.cmd}"/>
+            <arg line="tomcat7:undeploy" />
         </exec>
     </target>
 

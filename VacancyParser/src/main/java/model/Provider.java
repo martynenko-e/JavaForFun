@@ -1,7 +1,7 @@
 package model;
 
 import java.util.List;
-import vo.Vacancy;
+import valueobject.Vacancy;
 
 /**
  * Created by Martynenko on 14.01.2016.
@@ -20,5 +20,5 @@ public class Provider
         this.strategy = strategy;
     }
 
-    public List<Vacancy> getJavaVacancies(String searchString){return strategy.getVacancies(searchString);}
+    public List<Vacancy> getJavaVacancies(String searchCity, String searchLanguage){return strategy.getVacancies(searchCity, searchLanguage);}
 }

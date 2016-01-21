@@ -1,13 +1,52 @@
-package vo;
+package valueobject;
 
 /**
  * Created by Martynenko on 14.01.2016.
  */
-public class Vacancy
-{
+public class Vacancy {
     private String link;
     private String title;
     private String city;
+    private String description;
+    private String dateOfPublication;
+    private String companyName;
+    private String typeOfEmployment;
+    private String experienceOfWork;
+    private String keyWord;
+    private boolean show;
+
+
+    public Vacancy() {
+    }
+
+    public Vacancy(String link, String title, String city, String description, String dateOfPublication, String typeOfEmployment, String companyName, String experienceOfWork, boolean show, String keyWord) {
+        setLink(link);
+        setTitle(title);
+        setCity(city);
+        setDescription(description);
+        setDateOfPublication(dateOfPublication);
+        setTypeOfEmployment(typeOfEmployment);
+        setCompanyName(companyName);
+        setExperienceOfWork(experienceOfWork);
+        setShow(show);
+        setKeyWord(keyWord);
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
+    }
 
     public String getCity() {
         return city;
@@ -16,13 +55,6 @@ public class Vacancy
     public void setCity(String city) {
         this.city = city;
     }
-
-    private String description;
-    private String dateOfPublication;
-    private String companyName;
-    private String typeOfEmployment;
-    private String experienceOfWork;
-    private Boolean show;
 
     public String getLink() {
         return link;
@@ -80,11 +112,4 @@ public class Vacancy
         this.experienceOfWork = experienceOfWork;
     }
 
-    public Boolean getShow() {
-        return show;
-    }
-
-    public void setShow(Boolean show) {
-        this.show = show;
-    }
 }

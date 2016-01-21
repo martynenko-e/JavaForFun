@@ -91,11 +91,13 @@ public class VacancyDao {
         }
     }
 
-    public List<Vacancy> getVacancyFromDB(){
+    public List<Vacancy> getVacancyFromDB() {
         ArrayList<Vacancy> vacancies = new ArrayList<>();
+
         Statement stmt = null;
         try (Connection con = DriverManager.getConnection(CONNECTION_URL, CONNECTION_USER, CONNECTION_PASSWORD)) {
             stmt = con.createStatement();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             // select
             String sql = "SELECT * FROM vacations.vacancies";
             ResultSet rs = stmt.executeQuery(sql);
@@ -116,7 +118,12 @@ public class VacancyDao {
             }
             rs.close();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return vacancies;

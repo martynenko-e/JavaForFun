@@ -4,7 +4,7 @@
     <property name="project" value="VacancyParser"/>
     <property name="desktop.path" value="C:\_project\git\java\JavaForFun\VacancyParser\target"/>
     <property name="war.path" value="C:\_project\git\java\JavaForFun\VacancyParser\target"/>
-    <property name="tomcat.path" location="C:\_files\apache-tomcat-7.0.47"/>
+    <property name="tomcat.path" location="C:\_files\apache-tomcat-7.0.67"/>
     <property name="app.path" location="C:\_project\git\java\JavaForFun"/>
     <property name="mvn.cmd" location="C:\_files\apache-maven-3.3.9\bin\mvn.cmd"/>
 

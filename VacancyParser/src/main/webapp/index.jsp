@@ -4,7 +4,7 @@
 <html>
 <head>
     <!-- Bootstrap -->
-
+    <meta charset="utf-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -42,6 +42,7 @@
         </tr>
         </thead>
         <%
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             VacancyForJSP vacancyList = new VacancyForJSP();
             List<Vacancy> vacancies = vacancyList.getVacancyList();
             String typeOfSort = request.getParameter("sort-by");

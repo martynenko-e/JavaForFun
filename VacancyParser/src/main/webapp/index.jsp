@@ -1,6 +1,7 @@
 <%@ page import="tools.VacancyForJSP" %>
 <%@ page import="valueobject.Vacancy" %>
 <%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <!-- Bootstrap -->
@@ -8,9 +9,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Retry</h1>
+<div class="panel-heading">
+    <h1>Vacancy data base</h1>
+</div>
 
-<div class="table">
+
+<div class="table table-hover">
     <table class="table">
         <thead>
         <tr>

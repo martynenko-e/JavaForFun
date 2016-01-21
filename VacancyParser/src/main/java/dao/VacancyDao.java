@@ -39,7 +39,7 @@ public class VacancyDao {
                     "  `dateOfPublication` varchar(45) DEFAULT NULL,\n" +
                     "  `typeOfEmployment` varchar(45) DEFAULT NULL,\n" +
                     "  `companyName` varchar(45) DEFAULT NULL,\n" +
-                    "  `experienceOfWork` varchar(45) DEFAULT NULL,\n" +
+                    "  `experienceOfWork` varchar(500) DEFAULT NULL,\n" +
                     "  `show` tinyint(4) DEFAULT NULL,\n" +
                     "  `keyWord` varchar(10000) DEFAULT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +

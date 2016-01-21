@@ -21,4 +21,11 @@ public class Provider
     }
 
     public List<Vacancy> getJavaVacancies(String searchCity, String searchLanguage){return strategy.getVacancies(searchCity, searchLanguage);}
+
+    @Override
+    public String toString() {
+        return "Provider{" +
+                "strategy=" + strategy.getClass().getSimpleName() +
+                '}';
+    }
 }

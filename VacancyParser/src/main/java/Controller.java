@@ -33,6 +33,7 @@ public class Controller {
                 for (Vacancy vacancy : provider.getJavaVacancies("kiev", "java")) {
                     vacs.add(vacancy);
                 }
+                System.out.println(vacs.size() + provider.toString());
             }
         } catch (NullPointerException e) {/*NOP*/}
         System.out.println(vacs.size());

@@ -39,20 +39,7 @@ public class Controller {
         System.out.println(vacs.size());
     }
 
-    public void addVacanciesToDb() {
-        for (Vacancy vacancy : vacs) {
-            VacancyDao.getInstance().addVacancy(vacancy.getLink(),
-                    vacancy.getTitle(),
-                    vacancy.getCity(),
-                    vacancy.getDescription(),
-                    vacancy.getDateOfPublication(),
-                    vacancy.getTypeOfEmployment(),
-                    vacancy.getCompanyName(),
-                    vacancy.getExperienceOfWork(),
-                    vacancy.isShow(),
-                    vacancy.getKeyWord());
-        }
+    public ArrayList<Vacancy> getVacs() {
+        return vacs;
     }
-
-
 }

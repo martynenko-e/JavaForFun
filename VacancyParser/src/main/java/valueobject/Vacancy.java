@@ -14,22 +14,14 @@ public class Vacancy {
     private String experienceOfWork;
     private String keyWord;
     private boolean show;
+    private Integer id;
 
-
-    public Vacancy() {
+    public Integer getId() {
+        return id;
     }
 
-    public Vacancy(String link, String title, String city, String description, String dateOfPublication, String typeOfEmployment, String companyName, String experienceOfWork, boolean show, String keyWord) {
-        setLink(link);
-        setTitle(title);
-        setCity(city);
-        setDescription(description);
-        setDateOfPublication(dateOfPublication);
-        setTypeOfEmployment(typeOfEmployment);
-        setCompanyName(companyName);
-        setExperienceOfWork(experienceOfWork);
-        setShow(show);
-        setKeyWord(keyWord);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public boolean isShow() {

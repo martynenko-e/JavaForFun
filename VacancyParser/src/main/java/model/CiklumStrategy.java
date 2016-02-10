@@ -39,14 +39,24 @@ public class CiklumStrategy implements Strategy {
                 String vacancyCompanyName = "Ciklum";
                 String vacancyCity = "Kiev";
                 String vacancyTypeOfEmployment = "full time";
-                String vacancyWorkExperince = "There is no working experience needed!";
+                String vacancyExperienceOfWork = "There is no working experience needed!";
 
                 try {
-                    vacancyWorkExperince = "WTF";
+                    vacancyExperienceOfWork = "WTF";
                 } catch (NullPointerException e) {
                     System.out.println("There is no working exp needed");
                 }
-                Vacancy vacancyObject = new Vacancy(vacancyLink, vacancyTitle, vacancyCity, vacancyDescription, vacancyDateOfPublication, vacancyTypeOfEmployment, vacancyCompanyName, vacancyWorkExperince, true, "");
+                Vacancy vacancyObject = new Vacancy();
+                vacancyObject.setLink(vacancyLink);
+                vacancyObject.setTitle(vacancyTitle);
+                vacancyObject.setCity(vacancyCity);
+                vacancyObject.setDescription(vacancyDescription);
+                vacancyObject.setDateOfPublication(vacancyDateOfPublication);
+                vacancyObject.setTypeOfEmployment(vacancyTypeOfEmployment);
+                vacancyObject.setCompanyName(vacancyCompanyName);
+                vacancyObject.setExperienceOfWork(vacancyExperienceOfWork);
+                vacancyObject.setShow(true);
+                vacancyObject.setKeyWord("");
                 listOfVacancies.add(vacancyObject);
             }
         } catch (IOException e) {

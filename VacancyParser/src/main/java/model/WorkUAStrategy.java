@@ -37,14 +37,24 @@ public class WorkUAStrategy implements Strategy{
                 String vacancyCompanyName = companyName.first().text();
                 String vacancyCity = otherDescription.get(1).text();
                 String vacancyTypeOfEmployment = otherDescription.get(2).text();
-                String vacancyWorkExperience = "There is no working experience needed"; // конструктор может выебываться
+                String vacancyExperienceOfWork = "There is no working experience needed"; // конструктор может выебываться
 
                 try {
-                    vacancyWorkExperience = otherDescription.get(3).text();
+                    vacancyExperienceOfWork = otherDescription.get(3).text();
                 } catch (IndexOutOfBoundsException e1) {
                     System.out.println("There is no working experience needed");
                 }
-                Vacancy vacancyObject = new Vacancy(vacancyLink, vacancyTitle, vacancyCity, vacancyDescription, vacancyDateOfPublication, vacancyTypeOfEmployment, vacancyCompanyName, vacancyWorkExperience, true, "");
+                Vacancy vacancyObject = new Vacancy();
+                vacancyObject.setLink(vacancyLink);
+                vacancyObject.setTitle(vacancyTitle);
+                vacancyObject.setCity(vacancyCity);
+                vacancyObject.setDescription(vacancyDescription);
+                vacancyObject.setDateOfPublication(vacancyDateOfPublication);
+                vacancyObject.setTypeOfEmployment(vacancyTypeOfEmployment);
+                vacancyObject.setCompanyName(vacancyCompanyName);
+                vacancyObject.setExperienceOfWork(vacancyExperienceOfWork);
+                vacancyObject.setShow(true);
+                vacancyObject.setKeyWord("");
                 listOfVacancies.add(vacancyObject);
             }
         } catch (IOException e) {

@@ -36,7 +36,17 @@ public class AstoundStrategy implements Strategy{
                 String vacancyCity = "Kiev";
                 String vacancyTypeOfEmployment = "full";
                 String vacancyExperienceOfWork = "hz";
-                Vacancy vacancyObject = new Vacancy(vacancyLink, vacancyTitle, vacancyCity, vacancyDescription, vacancyDateOfPublication, vacancyTypeOfEmployment, vacancyCompanyName, vacancyExperienceOfWork, true, "");
+                Vacancy vacancyObject = new Vacancy();
+                vacancyObject.setLink(vacancyLink);
+                vacancyObject.setTitle(vacancyTitle);
+                vacancyObject.setCity(vacancyCity);
+                vacancyObject.setDescription(vacancyDescription);
+                vacancyObject.setDateOfPublication(vacancyDateOfPublication);
+                vacancyObject.setTypeOfEmployment(vacancyTypeOfEmployment);
+                vacancyObject.setCompanyName(vacancyCompanyName);
+                vacancyObject.setExperienceOfWork(vacancyExperienceOfWork);
+                vacancyObject.setShow(true);
+                vacancyObject.setKeyWord("");
                 vacancyArrayList.add(vacancyObject);
             }
         } catch(IOException e) {

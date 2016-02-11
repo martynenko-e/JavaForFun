@@ -1,13 +1,9 @@
 
-
-import dao.VacancyDao;
 import dao.VacancyJDBCTemplate;
 import model.*;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import tools.HtmlToFile;
 import valueobject.Vacancy;
 
 import java.io.IOException;
